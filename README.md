@@ -10,6 +10,17 @@ A full-stack MERN (MongoDB, Express, React, Node.js) single-page application for
 - **View all exercises** in an organized table format
 - Full CRUD functionality with a responsive user interface
 
+## Screenshots
+
+### Main View
+![Main View](screenshots/main-view.png)
+
+### Add Exercise
+![Add Exercise](screenshots/add-exercise.png)
+
+### Update Exercise
+![Update Exercise](screenshots/update-exercise.png)
+
 ## Technologies Used
 
 **Frontend:**
@@ -85,17 +96,16 @@ Before running this application, make sure you have the following installed:
    cd frontend-rest
    npm run dev
    ```
-   The app will open in your browser at `http://localhost:5173`
+   The app will open in your browser at `http://localhost:5173` (or the port Vite assigns)
 
 ## Project Structure
 
 ```
 exercise-tracker/
-├── backend-rest/
-│   ├── .env             # MongoDB Connect String with Port number
+├── backend/
 │   ├── models/          # MongoDB schemas
 │   ├── controllers/     # Route handlers
-├── frontend-rest/
+├── frontend/
 │   ├── src/
 │   │   ├── components/  # React components
 │   │   ├── App.js       # Main app component
