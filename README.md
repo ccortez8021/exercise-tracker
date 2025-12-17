@@ -13,13 +13,13 @@ A full-stack MERN (MongoDB, Express, React, Node.js) single-page application for
 ## Screenshots
 
 ### Main View
-![Main View](screenshots/main-view.png)
+![Main View](cortezcr-a9/screenshots/main-view.png)
 
 ### Add Exercise
-![Add Exercise](screenshots/add-exercise.png)
+![Add Exercise](cortez-a9/screenshots/add-exercise.png)
 
 ### Update Exercise
-![Update Exercise](screenshots/update-exercise.png)
+![Update Exercise](cortez-a9/screenshots/update-exercise.png)
 
 ## Technologies Used
 
