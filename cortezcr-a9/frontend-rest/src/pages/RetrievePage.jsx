@@ -8,7 +8,7 @@ function RetrievePage({setExerciseToUpdate}) {
     const navigate = useNavigate();
 
     const loadExercises = async ()=>{
-        const response = await fetch('/exercises');
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/exercises`);
         const exerciseData = await response.json();
         setExercises(exerciseData);
     }
@@ -22,7 +22,7 @@ function RetrievePage({setExerciseToUpdate}) {
     }
     const onDelete = async (_id)=>{
         const response = await fetch(
-            `/exercises/${_id}`,
+            `${import.meta.env.VITE_API_URL}/exercises/${_id}`,
             {method: 'DELETE'}
         );
         if(response.status === 204){

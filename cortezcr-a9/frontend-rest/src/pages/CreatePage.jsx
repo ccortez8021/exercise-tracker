@@ -15,7 +15,7 @@ export const CreatePage = () => {
         formData.preventDefault();
         const newExercise = {name, reps, weight, unit, date};
         const response = await fetch(
-            '/exercises',{
+            `${import.meta.env.VITE_API_URL}/exercises`,{
                 method: 'POST',
                 headers:{'Content-Type':'application/json'},
                 body: JSON.stringify(newExercise)
