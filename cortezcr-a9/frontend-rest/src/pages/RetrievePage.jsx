@@ -21,6 +21,10 @@ function RetrievePage({setExerciseToUpdate}) {
         navigate('/update');
     }
     const onDelete = async (_id)=>{
+        const confirmed = window.confirm("Are you sure you want to delete this exercise?");
+        if(!confirmed){
+            return; // User clicked "Cancel", so exit
+        }
         const response = await fetch(
             `${import.meta.env.VITE_API_URL}/exercises/${_id}`,
             {method: 'DELETE'}
