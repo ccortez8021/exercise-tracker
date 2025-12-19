@@ -135,3 +135,4 @@ Created by Cristo Cortez as part of a web development course final project.
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
+Last update: December 2025
