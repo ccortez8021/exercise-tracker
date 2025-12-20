@@ -72,28 +72,13 @@ nav a:hover{
   padding: auto;
   text-decoration: none;
 }
-tr th{
-  border: none;
-  border-bottom: 2px solid #282c34;
-  color: #d3ddf0;
-  padding: 0 10px;
-  background-color: #244586;
-}
-tr td{
-  border: none;
-  border-top: 2px solid #282c34 ;
-  color: #282c34;
-  padding: 10px 10px;
-  text-align: center;
-  background-color: #eaedf1;
-}
+
 input{
-  padding: 2px 0;
+  padding: 3px;
   display: grid;
   margin: 10px 0;
 }
 button{
-  padding: auto;
   display: block;
   margin: 5px auto;
   border-radius: 5px;
@@ -109,11 +94,7 @@ button:hover{
 select{
   padding: 3px 0;
   display: grid;
-  margin: 10px 0;
-}
-table{
-  border-collapse: collapse;
-  width: 99%;
+  margin: 11px 0;
 }
 form p{
   display: inline-block;
@@ -137,7 +118,112 @@ form label{
   background-color: #244586;
   display: block;
 }
-#edit:hover,
-#trash:hover{
-  font-size: x-large;
+.exercise-table {
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+/* Table Header */
+.exercise-table thead tr {
+    background: linear-gradient(135deg, #244586 0%, #374151 100%);
+}
+
+.exercise-table th {
+    border: none;
+    color: #ffffff;
+    padding: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+/* Sortable column headers */
+.exercise-table th.sortable {
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s;
+    position: relative;
+}
+
+.exercise-table th.sortable:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.exercise-table th.sortable:active {
+    transform: scale(0.98);
+}
+
+/* Table Body */
+.exercise-table tbody tr {
+    transition: all 0.3s;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.exercise-table tbody tr:hover {
+    background-color: #f9fafb;
+    transform: scale(1.01);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.exercise-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.exercise-table td {
+    border: none;
+    color: #374151;
+    padding: 1rem;
+    text-align: center;
+    background-color: #ffffff;
+    font-size: 0.95rem;
+}
+
+/* Icon buttons */
+.icon-button {
+    cursor: pointer;
+    font-size: 1.3rem;
+    transition: all 0.3s;
+}
+
+.edit-icon {
+    color: #3b82f6;
+}
+
+.edit-icon:hover {
+    color: #2563eb;
+    transform: scale(1.2);
+}
+
+.delete-icon {
+    color: #ef4444;
+}
+
+.delete-icon:hover {
+    color: #dc2626;
+    transform: scale(1.2);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .exercise-table {
+        font-size: 0.85rem;
+    }
+    
+    .exercise-table th,
+    .exercise-table td {
+        padding: 0.75rem 0.5rem;
+    }
+    
+    .icon-button {
+        font-size: 1.1rem;
+    }
 }
