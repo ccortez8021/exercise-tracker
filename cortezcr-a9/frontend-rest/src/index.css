@@ -24,8 +24,8 @@ body {
   color: #d3ddf0;
   margin: auto;
   padding: auto;
-
 }
+
 header{
   background-color: #282c34;
   color: #d3ddf0;
@@ -33,12 +33,14 @@ header{
   padding: auto;
   text-align: center;
 }
+
 main{
   background-color: #282c34;
   color: #d3ddf0;
   margin:auto;
   padding: auto;
 }
+
 footer{
   background-color: #282c34;
   color: #d3ddf0;
@@ -46,6 +48,7 @@ footer{
   padding:auto;
   text-align: center;
 }
+
 nav{
   background-color: #282c34;
   border: none;
@@ -55,6 +58,7 @@ nav{
   text-decoration: none;
   text-align: center;
 }
+
 nav a{
   background-color: #afc3eb;
   border: 2px solid #afc3eb;
@@ -64,6 +68,7 @@ nav a{
   text-decoration: none;
   border-radius: 5px;
 }
+
 nav a:hover{
   background-color: #282c34;
   border: 2px dotted #afc3eb;
@@ -78,6 +83,7 @@ input{
   display: grid;
   margin: 10px 0;
 }
+
 button{
   display: block;
   margin: 5px auto;
@@ -86,20 +92,24 @@ button{
   background-color: #afc3eb;
   font-size: medium;
 }
+
 button:hover{
   background-color: #282c34;
   border: 3px dotted #afc3eb;
   color: #eaedf1;
 }
+
 select{
   padding: 3px 0;
   display: grid;
   margin: 11px 0;
 }
+
 form p{
   display: inline-block;
   margin:2px;
 }
+
 form{
  
   text-align: center;
@@ -108,54 +118,58 @@ form{
 #reps, #weight{
   width: 80px;
 }
+
 #exercise{
   width: 15rem;
 }
+
 #unit-select{
   width: 5rem;
 }
+
 form label{
   background-color: #244586;
   display: block;
 }
+
 .exercise-table {
-    width: 100%;
-    max-width: 1200px;
-    margin: 2rem auto;
-    border-collapse: separate;
-    border-spacing: 0;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
-    overflow: hidden;
-    background-color: #ffffff;
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #ffffff;
 }
 
 /* Table Header */
 .exercise-table thead tr {
-    background: linear-gradient(135deg, #244586 0%, #374151 100%);
+  background: linear-gradient(135deg, #244586 0%, #374151 100%);
 }
 
 .exercise-table th {
-    border: none;
-    color: #ffffff;
-    padding: 1rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    text-align: center;
+  border: none;
+  color: #ffffff;
+  padding: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-align: center;
 }
 
 /* Sortable column headers */
 .exercise-table th.sortable {
-    cursor: pointer;
-    user-select: none;
-    transition: background-color 0.3s;
-    position: relative;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s;
+  position: relative;
 }
 
 .exercise-table th.sortable:hover {
-    background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 .exercise-table th.sortable:active {
@@ -164,66 +178,66 @@ form label{
 
 /* Table Body */
 .exercise-table tbody tr {
-    transition: all 0.3s;
-    border-bottom: 1px solid #e5e7eb;
+  transition: all 0.3s;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .exercise-table tbody tr:hover {
-    background-color: #f9fafb;
-    transform: scale(1.01);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background-color: #f9fafb;
+  transform: scale(1.01);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .exercise-table tbody tr:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .exercise-table td {
-    border: none;
-    color: #374151;
-    padding: 1rem;
-    text-align: center;
-    background-color: #ffffff;
-    font-size: 0.95rem;
+  border: none;
+  color: #374151;
+  padding: 1rem;
+  text-align: center;
+  background-color: #ffffff;
+  font-size: 0.95rem;
 }
 
 /* Icon buttons */
 .icon-button {
-    cursor: pointer;
-    font-size: 1.3rem;
-    transition: all 0.3s;
+  cursor: pointer;
+  font-size: 1.3rem;
+  transition: all 0.3s;
 }
 
 .edit-icon {
-    color: #3b82f6;
+  color: #3b82f6;
 }
 
 .edit-icon:hover {
-    color: #2563eb;
-    transform: scale(1.2);
+  color: #2563eb;
+  transform: scale(1.2);
 }
 
 .delete-icon {
-    color: #ef4444;
+  color: #ef4444;
 }
 
 .delete-icon:hover {
-    color: #dc2626;
-    transform: scale(1.2);
+  color: #dc2626;
+  transform: scale(1.2);
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
-    .exercise-table {
-        font-size: 0.85rem;
-    }
-    
-    .exercise-table th,
-    .exercise-table td {
-        padding: 0.75rem 0.5rem;
-    }
-    
-    .icon-button {
-        font-size: 1.1rem;
-    }
+  .exercise-table {
+      font-size: 0.85rem;
+  }
+  
+  .exercise-table th,
+  .exercise-table td {
+      padding: 0.75rem 0.5rem;
+  }
+  
+  .icon-button {
+      font-size: 1.1rem;
+  }
 }
