@@ -24,13 +24,13 @@ function createModel(){
         reps: {type: Number, required: true},
         weight: {type: Number, required: true},
         unit: {type: String, required: true},
-        date: {type: Date, required: true}
+        date: {type: Date, required: true},
+        userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true}
     });
     return mongoose.model(EXERCISE_CLASS, exerciseSchema);
 }
 async function createExercise(exerciseData){
-    const {name, reps, weight, unit, date} = exerciseData;
-    const exercise = new ExerciseModel({name, reps, weight, unit, date});
+    const exercise = new ExerciseModel(exerciseData);
     return await exercise.save();
 }
 async function findExercises(filter){

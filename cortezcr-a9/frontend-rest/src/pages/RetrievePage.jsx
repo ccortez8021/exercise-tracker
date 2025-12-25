@@ -2,22 +2,33 @@ import { Link } from 'react-router-dom';
 import ExerciseTable from '../components/ExerciseTable';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+
 
 function RetrievePage({setExerciseToUpdate}) {
     const [exercises, setExercises] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     const navigate = useNavigate();
+    const { token } = useAuth();
 
     const loadExercises = async ()=>{
         setIsLoading(true);
         try{
-             const response = await fetch(`${import.meta.env.VITE_API_URL}/exercises`);
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/exercises`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch exercises');
+            }
             const exerciseData = await response.json();
             setExercises(exerciseData);
         }
         catch(error){
-            console.error('Error loading exercise:', error0);
+            console.error('Error loading exercise:', error);
         }
         finally{
             setIsLoading(false);
@@ -42,8 +53,14 @@ function RetrievePage({setExerciseToUpdate}) {
     try {
         const response = await fetch(
             `${import.meta.env.VITE_API_URL}/exercises/${_id}`,
-            {method: 'DELETE'}
+            {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            }
         );
+        
         if(response.status === 204){
             setExercises(exercises.filter(m => m._id !== _id));
         } else {

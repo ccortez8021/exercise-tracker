@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 export const CreatePage = () => {
-
     const [name, setName] = useState('');
     const [reps, setReps] = useState('');
     const [weight, setWeight] = useState('');
@@ -10,86 +10,112 @@ export const CreatePage = () => {
     const [date, setDate] = useState('');
 
     const navigate = useNavigate();
+    const { token } = useAuth();
 
     const addExercise = async (formData) => {
         formData.preventDefault();
-        const newExercise = {name, reps, weight, unit, date};
-        const response = await fetch(
-            `${import.meta.env.VITE_API_URL}/exercises`,{
-                method: 'POST',
-                headers:{'Content-Type':'application/json'},
-                body: JSON.stringify(newExercise)
+
+        const newExercise = {
+            name,
+            reps: Number(reps),
+            weight: Number(weight),
+            unit,
+            date
+        };
+
+        try {
+            const response = await fetch(
+                `${import.meta.env.VITE_API_URL}/exercises`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(newExercise)
+                }
+            );
+
+            if (response.status === 201) {
+                alert("Great Job! Your exercise has been added");
+                navigate('/');
+            } else {
+                alert("Failed to add exercise, try again");
             }
-        );
-        if(response.status === 201){
-            alert("Great Job! Your exercise has been added");
-        }else{
+        } catch (error) {
+            console.error('Error adding exercise:', error);
             alert("Failed to add exercise, try again");
         }
-        navigate('/');
     };
 
     return (
         <form onSubmit={addExercise}>
             <p>
-                <label htmlFor='execise'>Name</label>
+                <label htmlFor='exercise'>Name</label>
                 <input
                     type='text'
                     placeholder='exercise'
                     id='exercise'
                     required
                     value={name}
-                    onChange={e =>{setName(e.target.value)}}>
-                </input>
+                    onChange={e => setName(e.target.value)}
+                />
             </p>
+
             <p>
                 <label htmlFor='reps'>Reps</label>
-                <input 
-                    type='number' 
+                <input
+                    type='number'
                     id='reps'
                     placeholder='repetitions'
                     required
                     value={reps}
-                    onChange={e => setReps(e.target.valueAsNumber)}>
-                </input>
+                    onChange={e => setReps(e.target.value)}
+                />
             </p>
+
             <p>
                 <label htmlFor='weight'>Weight</label>
-                <input 
-                    type="number"
-                    id="weight"
+                <input
+                    type='number'
+                    id='weight'
                     placeholder='weight'
                     required
                     value={weight}
-                    onChange={e => setWeight(e.target.valueAsNumber)}>
-                </input>
+                    onChange={e => setWeight(e.target.value)}
+                />
             </p>
+
             <p>
                 <label htmlFor='unit-select'>Units</label>
                 <select
                     id='unit-select'
                     required
                     value={unit}
-                    onChange={e => setUnit(e.target.value)}>
+                    onChange={e => setUnit(e.target.value)}
+                >
                     <option value='kgs'>kgs</option>
                     <option value='lbs'>lbs</option>
                     <option value='miles'>miles</option>
                 </select>
             </p>
+
             <p>
                 <label htmlFor='timestamp'>Time</label>
-                <input 
+                <input
                     type='date'
                     id='timestamp'
-                    onChange={e => setDate(e.target.value)}>
-                </input>
+                    required
+                    value={date}
+                    onChange={e => setDate(e.target.value)}
+                />
             </p>
-            <button
-                type='submit'
-                id='log'
-            >Log Exercise</button>
+
+            <button type='submit' id='log'>
+                Log Exercise
+            </button>
         </form>
     );
-}
+};
 
 export default CreatePage;

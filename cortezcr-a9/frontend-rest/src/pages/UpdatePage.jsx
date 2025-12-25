@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 export const UpdatePage = ({exerciseToUpdate}) => {
 
@@ -10,23 +11,33 @@ export const UpdatePage = ({exerciseToUpdate}) => {
     const[date, setDate] = useState(exerciseToUpdate.date);
 
     const navigate = useNavigate()
+    const { token } = useAuth();
 
     const updateExercise = async(formData)=>{
         formData.preventDefault();
         const updatedExercise = {name, reps, weight, unit, date}
-        const response = await fetch(
-            `${import.meta.env.VITE_API_URL}/exercises/${exerciseToUpdate._id}`, {
-                method: 'PUT',
-                headers: {'Content-Type':'application/json'},
-                body: JSON.stringify(updatedExercise)
+
+        try{
+            const response = await fetch(
+                `${import.meta.env.VITE_API_URL}/exercises/${exerciseToUpdate._id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type':'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(updatedExercise)
+                }
+            );
+            if(response.status == 200){
+                alert("Succesfully updated the exercise");
+                navigate('/');
+            } else{
+                alert("Failed to update the exercise" + response.status);
             }
-        );
-        if(response.status == 200){
-            alert("Succesfully updated the exercise");
-        } else{
-            alert("Failed to update the exercise" + response.status);
+        } catch (error) {
+            console.error('Error updating exercise:', error);
+            alert("Failed to update the exercise");
         }
-        navigate('/');
     };
     return (
         <form onSubmit={updateExercise}>
