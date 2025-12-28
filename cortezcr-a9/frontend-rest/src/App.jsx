@@ -6,7 +6,7 @@ import RetrievePage from './pages/RetrievePage';
 import CreatePage from './pages/CreatePage';
 import UpdatePage from './pages/UpdatePage';
 import LoginPage from './components/LoginPage';
-import SignupPage from './components/SignUpPage';
+import SignupPage from './components/SignupPage';
 
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 
