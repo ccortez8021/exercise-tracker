@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import './AuthPages.css'
 
 function SignupPage(){
     const [username, setUsername] = useState('');
@@ -15,13 +16,13 @@ function SignupPage(){
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
-        setIsLoading(true);
+        setIsLoading(false);
 
         if (password.length < 6) {
             setError('Password must be at least 6 characters');
-            setIsLoading(false);
             return;
         }
+        setIsLoading(true);
 
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/signup`, {
@@ -50,60 +51,83 @@ function SignupPage(){
     };
 
     return (
-        <div style={{ maxwidth: '400px', margin: '4rem auto', padding: '2rem' }}>
-            <h1>Sign Up</h1>
-            <form onSubmit={handleSubmit}>
-                {error && (
-                    <div style={{ color: 'red', marginBottom: '1rem'}}>
-                        {error}
+        <div className='auth-container'>
+            <div className='auth-card'>
+                <div className="auth-header">
+                    <h1>Create Account</h1>
+                    <p>Start tracking your fitness journey</p>
+                </div>
+
+                <form onSubmit={handleSubmit} className='auth-form'>
+                    {error && (
+                        <div className='error-message'>
+                            <span className='error-icon'>⚠️</span>
+                            {error}
+                        </div>
+                    )}
+
+                    <div className='form-group'>
+                        <label htmlFor='username'>Username</label>
+                        <input
+                            id='username'
+                            type='text'
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
+                            minLength={3}
+                            placeholder='johndoe'
+                            autoComplete='username'
+                        />
                     </div>
-                )}
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>Username:</label>
-                    <input
-                        type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                        minLength={3}
-                        style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
-                    />
-                </div>
 
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>Email:</label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
-                    />
-                </div>
+                    <div className='form-group'>
+                        <label htmlFor='email'>Email</label>
+                        <input
+                            id='email'
+                            type='email'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            placeholder='you@example.com'
+                            autoComplete='email'
+                        />
+                    </div>
 
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>Password:</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        minLength={6}
-                        style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
-                    />
-                </div>
-                <button
-                    type="submit"
-                    disabled={isLoading}
-                    style={{ width: '100%', padding: '0.75rem', marginBottom: '1rem' }}
+                    <div className='form-group'>
+                        <label htmlFor='password'>Password</label>
+                        <input
+                            id='password'
+                            type='password'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            minLength={6}
+                            placeholder='........'
+                            autoComplete='new-password'
+                        />
+                        <small className='form-hint'>At least 6 characters</small>
+                    </div>
+                    <button
+                        type='submit'
+                        disabled={isLoading}
+                        className='auth-button'
                     >
-                        {isLoading ? 'Creating account ...' : 'Sign up'}
-                    </button>
+                        {isLoading ? (
+                            <span className='loading-spinner'>Creating account...</span>
+                        ) : (
+                            'Sign Up'
+                        )}
+                        </button>
+                </form>
 
-                    <p style={{ textAlign: 'center' }}>
-                        Already have an account? <Link to="/login">Log in</Link>
+                <div className='auth-footer'>
+                    <p>
+                        Already have an account?
+                        <Link to='/Login' className='auth-link'>Log in </Link>
+
                     </p>
-            </form>
+                </div>
+            </div>
         </div>
     );
 

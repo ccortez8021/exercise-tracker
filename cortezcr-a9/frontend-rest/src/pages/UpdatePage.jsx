@@ -40,7 +40,7 @@ export const UpdatePage = ({exerciseToUpdate}) => {
         }
     };
     return (
-        <form onSubmit={updateExercise}>
+        <form onSubmit={updateExercise} className='update-form'>
             <p>
                 <label htmlFor='name'>Name</label>
                 <input

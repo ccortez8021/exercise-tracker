@@ -49,7 +49,7 @@ export const CreatePage = () => {
     };
 
     return (
-        <form onSubmit={addExercise}>
+        <form onSubmit={addExercise} className='create-form'>
             <p>
                 <label htmlFor='exercise'>Name</label>
                 <input

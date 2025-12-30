@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import './AuthPages.css';
 
 function LoginPage() {
     const [email, setEmail] = useState('');
@@ -40,48 +41,67 @@ function LoginPage() {
     };
 
     return (
-        <div style={{ maxWidth: '400px', margin: '4rem auto', padding: '2rem' }}>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                {error && (
-                    <div style={{ color: 'red', marginBottom: '1rem'}}>
-                        {error}
+        <div className="auth-container">
+            <div className="auth-card">
+                <div className="auth-header">
+                    <h1>Welcome Back</h1>
+                    <p>Log in to track your workouts</p>
+                </div>
+
+                <form onSubmit={handleSubmit} className="auth-form">
+                    {error && (
+                        <div className="error-message">
+                            <span className="error-icon">⚠️</span>
+                            {error}
+                        </div>
+                    )}
+                    
+                    <div className="form-group">
+                        <label htmlFor="email">Email</label>
+                        <input
+                            id="email"
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            placeholder="you@example.com"
+                            autoComplete="email"
+                        />
                     </div>
-                )}
-                <div style={{ marginBottom: '1rem'}}>
-                    <label>Email:</label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
-                        />
-                </div>
 
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>Password:</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
+                    <div className="form-group">
+                        <label htmlFor="password">Password</label>
+                        <input
+                            id="password"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            placeholder="••••••••"
+                            autoComplete="current-password"
                         />
-                </div>
-                
-                <button
-                    type='submit'
-                    disabled={isLoading}
-                    style={{ width: '100%', marginBottom: '1rem'}}
+                    </div>
+
+                    <button 
+                        type="submit" 
+                        disabled={isLoading}
+                        className="auth-button"
                     >
-                        {isLoading ? 'Logging in ...' : 'Login'}
+                        {isLoading ? (
+                            <span className="loading-spinner">Logging in...</span>
+                        ) : (
+                            'Log In'
+                        )}
                     </button>
+                </form>
 
-                    <p style={{ textAlign: 'center' }}>
-                        Don't have an account? <Link to='/signup'>Sign up</Link>
+                <div className="auth-footer">
+                    <p>
+                        Don't have an account? 
+                        <Link to="/signup" className="auth-link">Sign up</Link>
                     </p>
-            </form>
+                </div>
+            </div>
         </div>
     );
 }
